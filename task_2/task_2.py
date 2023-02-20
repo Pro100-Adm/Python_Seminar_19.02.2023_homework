@@ -26,16 +26,18 @@
 
 import json
 
+
 def write_order_to_json(item, quantity, price, buyer, date):
-    with open('orders.json','r',encoding='utf-8') as orders_file:
+    with open('orders.json', 'r', encoding='utf-8') as orders_file:
         orders = json.load(orders_file)
         values = [item, quantity, price, buyer, date]
-        temp_dict = dict(zip(orders["orders"][0].keys(),values))
+        temp_dict = dict(zip(orders["orders"][0].keys(), values))
         orders["orders"].append(temp_dict)
         orders_file.close()
-    with open('orders.json','w',encoding='utf-8') as orders_file:
-        json.dump(orders, orders_file,indent=4)
+    with open('orders.json', 'w', encoding='utf-8') as orders_file:
+        json.dump(orders, orders_file, indent=4)
 
-write_order_to_json(1,2,3,4,5)
-write_order_to_json(6,7,8,9,10)
-write_order_to_json(11,12,13,14,15)
+
+write_order_to_json(1, 2, 3, 4, 5)
+write_order_to_json(6, 7, 8, 9, 10)
+write_order_to_json(11, 12, 13, 14, 15)

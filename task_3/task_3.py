@@ -32,5 +32,5 @@ yaml_data = {
     }
 }
 
-with open('result.yaml', 'w',encoding='utf-8') as yaml_file:
+with open('result.yaml', 'w', encoding='utf-8') as yaml_file:
     yaml.dump(yaml_data, yaml_file, default_flow_style=False, allow_unicode=True)

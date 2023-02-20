@@ -37,10 +37,10 @@ os_code_list, os_type_list. В этой же функции создать гл�
 ПРОШУ ВАС НЕ УДАЛЯТЬ СЛУЖЕБНЫЕ ФАЙЛЫ TXT И ИТОГОВЫЙ ФАЙЛ CSV!!!
 """
 
-import csv,re
+import csv, re
 
 
-#os_prod_list.append(os_prod_reg.findall(data)[0].split()[2])
+# os_prod_list.append(os_prod_reg.findall(data)[0].split()[2])
 def get_data():
     system_vendor = re.compile(r'Изготовитель системы:\s*\S*')
     os_name = re.compile(r'Название ОС:\s*\S*\s?\S*\s?\S*\s?\S*')
@@ -49,7 +49,7 @@ def get_data():
     system_vendor_list, os_name_list, os_product_key_list, os_type_list = [], [], [], []
 
     for i in range(3):
-        with open(f"info_{i+1}.txt") as csv_table:
+        with open(f"info_{i + 1}.txt") as csv_table:
             csv_table_reader = csv.reader(csv_table)
             for row in csv_table_reader:
                 if len(system_vendor.findall(row[0])):
@@ -66,11 +66,12 @@ def get_data():
     for i in range(len(system_vendor_list)):
         result_data.append({})
         result_data[i].update({"№": i})
-        result_data[i].update({"Изготовитель системы":system_vendor_list[i]})
+        result_data[i].update({"Изготовитель системы": system_vendor_list[i]})
         result_data[i].update({"Название ОС": os_name_list[i]})
         result_data[i].update({"Код продукта": os_product_key_list[i]})
         result_data[i].update({"Тип системы": os_type_list[i]})
     return result_data
+
 
 def write_to_csv(filename):
     result_data = get_data()
@@ -81,5 +82,5 @@ def write_to_csv(filename):
         for result in result_data:
             F_N_WRITER.writerow(result)
 
-write_to_csv('result.csv')
 
+write_to_csv('result.csv')
